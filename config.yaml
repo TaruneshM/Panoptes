@@ -1,0 +1,21 @@
+video: data/shop.mp4
+detector: nano
+threshold: 0.4
+stride: 2
+min_visit_sec: 2
+frames_per_visit: 4
+vlm_model: qwen3.5:4b
+
+# 1920 x 1080 supermarket clip 10901926. The doorway is outside the shot.
+# Count crossings toward the camera in the center aisle.
+entrance_line: [[1430, 923], [830, 923]]
+zones:
+  # Standing area beside the foreground produce display.
+  shelf_1: [[250, 917], [640, 912], [795, 1079], [130, 1079]]
+
+checks:
+  - name: took_item
+    zone: shelf_1
+    question: >
+      Did this shopper pick up a product from the shelf and keep it in their
+      hand, basket or bag when leaving? Answer yes, no or unsure.
